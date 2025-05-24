@@ -1,4 +1,6 @@
-MIT License
+MIT MODIFIED License
+
+Contact the Author for Commercial Use!!!
 
 Copyright (c) [year] [fullname]
 
