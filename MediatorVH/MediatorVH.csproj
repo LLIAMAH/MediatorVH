@@ -4,6 +4,15 @@
     <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+	<PackageId>MediatorVH</PackageId>
+	<Version>1.0.0</Version>
+	<Authors>Vasiliy Himchenko</Authors>
+	<Company>Free Agent</Company>
+	<Description>
+		MediatR replacement with support for vertical slices and CQRS.
+	</Description>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<RepositoryUrl>https://github.com/LLIAMAH/MediatorVH</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
