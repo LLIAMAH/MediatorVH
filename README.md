@@ -9,19 +9,15 @@ builder.Services.AddMediatorVh([Assembly.GetExecutingAssembly()]);
 
 Remember, that exists two options to pass types to the types scanning process:
 
-1. 
+1. Scan takes the provided type assemblies and will scan all these assemblies for required interfaces
 ```
-public static IServiceCollection AddMediatorVh(this IServiceCollection services, IEnumerable<Type> types)
-{
-   /// ...
-}
+public static IServiceCollection AddMediatorVh(this IServiceCollection services,
+                                               IEnumerable<Type> types) { ...
 ```
-2. 
+2. Scan takes the provided assemblies and will scan all of them for required interfaces
 ```
-public static IServiceCollection AddMediatorVh(this IServiceCollection services, IEnumerable<Assembly> assemblies)
-{
-   /// ...
-}
+public static IServiceCollection AddMediatorVh(this IServiceCollection services,
+                                               IEnumerable<Assembly> assemblies) { ...
 ```
 
 And finally create standard Feature sets of the Command/Handler
