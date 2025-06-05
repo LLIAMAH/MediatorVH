@@ -20,6 +20,8 @@ public static IServiceCollection AddMediatorVh(this IServiceCollection services,
                                                IEnumerable<Assembly> assemblies) { ...
 ```
 
+-for client source scanning is responsible the Scrutor v6.0.1.
+
 And finally create standard Feature sets of the Command/Handler
 ```
 public record GetUsersCommand : ICommand<ResultList<UserDto>>;
