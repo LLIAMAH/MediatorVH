@@ -25,10 +25,13 @@ public static class MediatorVhExt
     {
         typesSelector
             .AddClasses(classes => classes.AssignableTo(typeof(IQueryHandler<,>)), publicOnly: false)
+            .AsSelf()
             .AsImplementedInterfaces()
             .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandler<>)), publicOnly: false)
+            .AsSelf()
             .AsImplementedInterfaces()
             .AddClasses(classes => classes.AssignableTo(typeof(ICommandHandler<,>)), publicOnly: false)
+            .AsSelf()
             .AsImplementedInterfaces()
             .WithScopedLifetime();
 
