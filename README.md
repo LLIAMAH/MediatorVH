@@ -24,19 +24,36 @@ public static IServiceCollection AddMediatorVh(this IServiceCollection services,
 
 And finally create standard Feature sets of the Command/Handler
 ```
-public record GetUsersCommand : ICommand<ResultList<UserDto>>;
+public record LoginCommand(string Username, string Password) : ICommand<IResult<LoginResponseDto>>;
 
-public class GetUsersCommandHandler : ICommandHandler<GetUsersCommand, ResultList<UserDto>>
+public class LoginCommandHandler(IUnitOfWork unitOfWork) : ICommandHandler<LoginCommand, IResult<LoginResponseDto>>
 {
     /// Initialization of the command required objects
 
-    public async Task<ResultList<UserDto>> Handle(GetUsersCommand request,
-        CancellationToken cancellationToken)
+    public async Task<IResult<LoginResponseDto>> Handle(LoginCommand request, CancellationToken cancellationToken)
     {
         IEnumerable<UserDto> data = ....
         /// Some code to get data
 
-        return new ResultList<UserDto>(data);
+        return new Result<LoginResponseDto>(
+            new LoginResponseDto(user.Id, user.Username, user.Email, "token", "refreshToken"));
     }
 }
+```
+
+Usage example in Minimal API
+
+```
+routeData.MapGet("/login", async (LoginCommandHandler handle, [FromBody] LoginDto loginData) =>
+{
+    var result = await handle.Handle(
+        new LoginCommand(loginData.Username, loginData.Password),
+        CancellationToken.None);
+
+    return result.IsSuccess
+        ? Results.Ok(result)
+        : Results.Unauthorized();
+})
+.WithName("Login")
+.Produces<IResult<LoginResponseDto>>(StatusCodes.Status200OK);
 ```
